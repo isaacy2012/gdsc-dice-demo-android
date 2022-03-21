@@ -14,7 +14,8 @@
         android:id="@+id/textview_die"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/button_roll_die"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="6" />
 
     <Button
         android:text="@string/button_roll_die_text"
@@ -24,6 +25,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_die"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_die_range"
+        app:layout_constraintBottom_toTopOf="@+id/button_die_range_down"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_die_range_header"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="6" />
+
+    <TextView
+        android:text="@string/die_range_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_die_range_header"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp" />
+
+    <Button
+        android:text="@string/down_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_die_range_down"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button_die_range_up"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:text="@string/up_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_die_range_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_die_range_down"
+        android:layout_marginStart="8dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

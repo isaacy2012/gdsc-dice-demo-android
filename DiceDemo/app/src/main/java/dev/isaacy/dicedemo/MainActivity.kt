@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
      */
     private lateinit var binding: ActivityMainBinding
 
+    private var dieRange: Int = 6
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         // set the text of the textview_die to "Press Roll"
         binding.textviewDie.text = getString(R.string.press_roll_die)
+        binding.textviewDieRange.text = dieRange.toString()
 
         addButtonOnClicks()
     }
@@ -30,8 +33,16 @@ class MainActivity : AppCompatActivity() {
      */
     private fun addButtonOnClicks() {
         binding.buttonRollDie.setOnClickListener {
-            // set the text of the textview_die to a random number from 1 to 6 inclusive
-            binding.textviewDie.text = Random.nextInt(1, 7).toString()
+            // set the text of the textview_die to a random number from 1 to dieRange inclusive
+            binding.textviewDie.text = Random.nextInt(1, dieRange + 1).toString()
+        }
+
+        binding.buttonDieRangeUp.setOnClickListener {
+            dieRange += 1
+        }
+
+        binding.buttonDieRangeDown.setOnClickListener {
+            dieRange -= 1
         }
     }
 }
