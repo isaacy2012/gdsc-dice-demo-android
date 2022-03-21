@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonDieRangeDown.setOnClickListener {
+            if (dieRange <= 1) {
+                return@setOnClickListener
+            }
+
             dieRange -= 1
             updateUI()
         }
