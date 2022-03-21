@@ -2,6 +2,8 @@ package dev.isaacy.dicedemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import dev.isaacy.dicedemo.databinding.ActivityMainBinding
 import kotlin.random.Random
 
@@ -42,10 +44,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonDieRangeUp.setOnClickListener {
             dieRange += 1
+            updateUI()
         }
 
         binding.buttonDieRangeDown.setOnClickListener {
             dieRange -= 1
+            updateUI()
         }
+    }
+
+    /**
+     * Update UI
+     */
+    private fun updateUI() {
+        binding.textviewDieRange.text = dieRange.toString()
     }
 }
