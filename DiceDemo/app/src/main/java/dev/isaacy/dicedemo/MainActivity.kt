@@ -5,6 +5,11 @@ import android.os.Bundle
 import dev.isaacy.dicedemo.databinding.ActivityMainBinding
 import kotlin.random.Random
 
+/**
+ * Main activity
+ *
+ * @author Isaac Young
+ */
 class MainActivity : AppCompatActivity() {
 
     /**
