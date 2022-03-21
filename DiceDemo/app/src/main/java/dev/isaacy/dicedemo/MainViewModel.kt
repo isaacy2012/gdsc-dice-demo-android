@@ -26,7 +26,7 @@ class MainViewModel : ViewModel() {
     /**
      * The current die number mutable live data backing field.
      */
-    private var _currentDieNumber: MutableLiveData<Int> = MutableLiveData()
+    private var _currentDieNumber: MutableLiveData<Int?> = MutableLiveData(null)
 
     /**
      * Current die number live data.
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
     /**
      * The last die number mutable live data backing field.
      */
-    private var _lastDieNumber: MutableLiveData<Int?> = MutableLiveData()
+    private var _lastDieNumber: MutableLiveData<Int?> = MutableLiveData(null)
 
     /**
      * The last die number.
