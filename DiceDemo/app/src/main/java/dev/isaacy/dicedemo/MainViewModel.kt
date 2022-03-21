@@ -45,7 +45,7 @@ class MainViewModel : ViewModel() {
 
     fun rollDie() {
         _lastDieNumber.value = currentDieNumber.value
-        _currentDieNumber.value = Random.nextInt(1, _dieRange.value!!)
+        _currentDieNumber.value = Random.nextInt(1, _dieRange.value!! + 1)
     }
 
     fun increaseDieRange() {
@@ -53,7 +53,12 @@ class MainViewModel : ViewModel() {
     }
 
     fun decreaseDieRange() {
-        _dieRange.value = _dieRange.value!! - 1
+        _dieRange.value?.let { range ->
+            if (range <= 1) {
+                return
+            }
+            _dieRange.value = range - 1
+        }
     }
 
 }
