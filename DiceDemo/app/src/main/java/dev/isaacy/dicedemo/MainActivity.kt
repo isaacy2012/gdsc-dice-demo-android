@@ -19,6 +19,16 @@ class MainActivity : AppCompatActivity() {
      */
     private var dieRange: Int = 6
 
+    /**
+     * The current die number.
+     */
+    private var currentDieNumber: Int? = null
+
+    /**
+     * The last die number
+     */
+    private var lastDieNumber: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,9 +36,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // set the text of the textview_die to "Press Roll"
-        binding.textviewDie.text = getString(R.string.press_roll_die)
-        binding.textviewDieRange.text = dieRange.toString()
+        // Update the UI for the first time
+        updateUI()
 
         addButtonOnClicks()
     }
@@ -39,7 +48,9 @@ class MainActivity : AppCompatActivity() {
     private fun addButtonOnClicks() {
         binding.buttonRollDie.setOnClickListener {
             // set the text of the textview_die to a random number from 1 to dieRange inclusive
-            binding.textviewDie.text = Random.nextInt(1, dieRange + 1).toString()
+            lastDieNumber = currentDieNumber
+            currentDieNumber = Random.nextInt(1, dieRange + 1)
+            updateUI()
         }
 
         binding.buttonDieRangeUp.setOnClickListener {
@@ -58,5 +69,8 @@ class MainActivity : AppCompatActivity() {
      */
     private fun updateUI() {
         binding.textviewDieRange.text = dieRange.toString()
+        binding.textviewLastDie.text = if (lastDieNumber != null) "Last: ${lastDieNumber.toString()}" else ""
+        binding.textviewDie.text =
+            if (currentDieNumber != null) currentDieNumber.toString() else getString(R.string.button_roll_die_text)
     }
 }
