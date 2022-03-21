@@ -12,6 +12,9 @@ class MainActivity : AppCompatActivity() {
      */
     private lateinit var binding: ActivityMainBinding
 
+    /**
+     * The die range.
+     */
     private var dieRange: Int = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
