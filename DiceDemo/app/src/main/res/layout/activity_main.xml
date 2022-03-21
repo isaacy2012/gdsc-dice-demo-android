@@ -17,7 +17,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <Button
-        android:text="Roll Die"
+        android:text="@string/button_roll_die_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_roll_die"
