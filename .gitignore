@@ -83,3 +83,5 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+DiceDemo/.idea/codeStyles/codeStyleConfig.xml
+DiceDemo/.idea/codeStyles/Project.xml
