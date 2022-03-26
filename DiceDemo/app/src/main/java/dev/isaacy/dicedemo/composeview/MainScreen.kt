@@ -21,6 +21,11 @@ import java.util.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 
+/**
+ * Main Screen.
+ *
+ * @author Isaac Young
+ */
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = viewModel()
@@ -136,7 +141,5 @@ private fun ConfigurationPane(
 @Preview
 @Composable
 private fun MyScreenPreview() {
-    MainScreen(MainViewModel().apply {
-        rollDie()
-    })
+    MainScreen()
 }
