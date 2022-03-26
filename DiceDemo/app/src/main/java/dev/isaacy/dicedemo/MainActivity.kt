@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // set the text of the textview_die to "Press Roll"
+        // set the text of the textview_die to "Press Roll Die"
         binding.textviewDie.text = getString(R.string.press_roll_die)
 
         addButtonOnClicks()
