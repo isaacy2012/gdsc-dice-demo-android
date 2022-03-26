@@ -1,4 +1,4 @@
-package dev.isaacy.dicedemo.view
+package dev.isaacy.dicedemo.composeview
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

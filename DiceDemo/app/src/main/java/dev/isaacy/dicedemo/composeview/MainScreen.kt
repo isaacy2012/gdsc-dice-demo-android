@@ -1,4 +1,4 @@
-package dev.isaacy.dicedemo.view
+package dev.isaacy.dicedemo.composeview
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -18,10 +18,12 @@ import androidx.compose.ui.unit.dp
 import dev.isaacy.dicedemo.MainViewModel
 import dev.isaacy.dicedemo.R
 import java.util.*
+import androidx.lifecycle.viewmodel.compose.viewModel
+
 
 @Composable
 fun MainScreen(
-    viewModel: MainViewModel
+    viewModel: MainViewModel = viewModel()
 ) {
     val dieNumber by viewModel.currentDieNumber.observeAsState()
     val lastNumber by viewModel.lastDieNumber.observeAsState()
@@ -71,16 +73,19 @@ private fun DieArea(
 ) = Column(
     modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
+    verticalArrangement = Arrangement.SpaceEvenly
 ) {
-    Text(
-        dieNumber?.toString() ?: stringResource(R.string.press_roll_die),
-        style = MaterialTheme.typography.h4
-    )
-    Text(
-        lastNumber?.let { "Last: $it" } ?: "",
-        modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
-    )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            dieNumber?.toString() ?: stringResource(R.string.press_roll_die),
+            style = MaterialTheme.typography.h4
+        )
+        Text(
+            lastNumber?.let { "Last: $it" } ?: ""
+        )
+    }
     Button(onClickRollDie) {
         Text(stringResource(R.string.button_roll_die_text).uppercase(Locale.getDefault()))
     }
