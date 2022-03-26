@@ -7,26 +7,25 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textview_die"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/textview_die"
-        app:layout_constraintTop_toTopOf="parent"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:text="6"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/textview_last_die"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintBottom_toTopOf="@+id/textview_last_die" />
+        tools:text="6" />
 
     <TextView
+        android:id="@+id/textview_last_die"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textview_last_die"
         app:layout_constraintBottom_toTopOf="@+id/button_roll_die"
-        app:layout_constraintTop_toBottomOf="@+id/textview_die"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_die" />
 
     <Button
         android:text="@string/button_roll_die_text"
@@ -34,25 +33,25 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_roll_die"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textview_die"
-        app:layout_constraintBottom_toTopOf="@+id/guideline" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"/>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline" />
 
 
     <TextView
@@ -60,7 +59,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textview_die_range"
         app:layout_constraintBottom_toTopOf="@+id/button_die_range_down"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_die_range_header"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -71,10 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textview_die_range_header"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
+        app:layout_constraintTop_toTopOf="parent"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guideline"
         android:layout_marginStart="16dp" />
 
     <Button
@@ -82,7 +81,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/button_die_range_down"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
