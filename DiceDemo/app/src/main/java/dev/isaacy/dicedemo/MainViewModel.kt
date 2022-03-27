@@ -1,26 +1,26 @@
 package dev.isaacy.dicedemo
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
 /**
- * Main view model
+ * Main view model.
  *
  * @author Isaac Young
  */
-class MainViewModel : ViewModel() {
+class MainViewModel(app: Application) : AndroidViewModel(app) {
 
-    /**
-     * The die range mutable live data backing field.
-     */
-    private var _dieRange: MutableLiveData<Int> = MutableLiveData(6)
+    private val preferencesRepository = PreferencesRepository(getApplication())
+
 
     /**
      * The die range live data.
      */
-    var dieRange: LiveData<Int> = _dieRange
+    var dieRange: LiveData<Int> = preferencesRepository.dieRange
 
 
     /**
@@ -48,26 +48,17 @@ class MainViewModel : ViewModel() {
      */
     fun rollDie() {
         _lastDieNumber.value = currentDieNumber.value
-        _currentDieNumber.value = Random.nextInt(1, _dieRange.value!! + 1)
+        _currentDieNumber.value = Random.nextInt(1, dieRange.value!! + 1)
     }
 
     /**
      * Increase die range
      */
-    fun increaseDieRange() {
-        _dieRange.value = _dieRange.value!! + 1
-    }
+    fun increaseDieRange() = preferencesRepository.increaseDieRange()
 
     /**
      * Decrease die range
      */
-    fun decreaseDieRange() {
-        _dieRange.value?.let { range ->
-            if (range <= 1) {
-                return
-            }
-            _dieRange.value = range - 1
-        }
-    }
+    fun decreaseDieRange() = preferencesRepository.decreaseDieRange()
 
 }
