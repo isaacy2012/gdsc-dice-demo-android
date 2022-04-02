@@ -1,9 +1,11 @@
 package dev.isaacy.dicedemo
 
-import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import dev.isaacy.dicedemo.databinding.ActivityMainBinding
+import kotlin.random.Random
 
 /**
  * Main activity
@@ -18,9 +20,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     /**
-     * The ViewModel
+     * The die range.
      */
-    private val viewModel by viewModels<MainViewModel>()
+    private var dieRange: Int = 6
+
+    /**
+     * The current die number.
+     */
+    private var currentDieNumber: Int? = null
+
+    /**
+     * The last die number
+     */
+    private var lastDieNumber: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,32 +41,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Update the UI for the first time
+        updateUI()
+
         addButtonOnClicks()
-
-        // observe the viewmodel
-        observeViewModel()
-    }
-
-    /**
-     * Observe the view model, updating the UI automatically.
-     */
-    private fun observeViewModel() {
-        // observe the die range
-        viewModel.dieRange.observe(this) {
-            binding.textviewDieRange.text = it.toString()
-        }
-
-        // observe the last die number
-        viewModel.lastDieNumber.observe(this) { lastDieNumber ->
-            binding.textviewLastDie.text = if (lastDieNumber != null) "Last: $lastDieNumber" else ""
-        }
-
-        // observe the current die number
-        viewModel.currentDieNumber.observe(this) { currentDieNumber ->
-            binding.textviewDie.text =
-                currentDieNumber?.toString() ?: getString(R.string.button_roll_die_text)
-
-        }
     }
 
     /**
@@ -63,15 +53,29 @@ class MainActivity : AppCompatActivity() {
     private fun addButtonOnClicks() {
         binding.buttonRollDie.setOnClickListener {
             // set the text of the textview_die to a random number from 1 to dieRange inclusive
-            viewModel.rollDie()
+            lastDieNumber = currentDieNumber
+            currentDieNumber = Random.nextInt(1, dieRange + 1)
+            updateUI()
         }
 
         binding.buttonDieRangeUp.setOnClickListener {
-            viewModel.increaseDieRange()
+            dieRange += 1
+            updateUI()
         }
 
         binding.buttonDieRangeDown.setOnClickListener {
-            viewModel.decreaseDieRange()
+            dieRange -= 1
+            updateUI()
         }
+    }
+
+    /**
+     * Update UI
+     */
+    private fun updateUI() {
+        binding.textviewDieRange.text = dieRange.toString()
+        binding.textviewLastDie.text = if (lastDieNumber != null) "Last: ${lastDieNumber.toString()}" else ""
+        binding.textviewDie.text =
+            if (currentDieNumber != null) currentDieNumber.toString() else getString(R.string.button_roll_die_text)
     }
 }
